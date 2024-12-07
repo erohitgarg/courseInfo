@@ -9,5 +9,9 @@
         <module name="courseInfo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="course-info-cli" target="17" />
+      <module name="course-info-repository" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

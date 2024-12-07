@@ -1,2 +1,3 @@
 org\example\cli\courseRetriever.class
 org\example\cli\service\courseRetrievalService.class
+org\example\cli\service\PluralsightCourses.class

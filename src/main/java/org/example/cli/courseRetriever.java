@@ -1,8 +1,11 @@
 package org.example.cli;
 
+import org.example.cli.service.PluralsightCourses;
 import org.example.cli.service.courseRetrievalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class courseRetriever {
     private static final Logger LOG = LoggerFactory.getLogger(courseRetriever.class);
@@ -21,8 +24,14 @@ public class courseRetriever {
     private static void retrieveCourse(String authorId) {
         String author = breakName(authorId);
         LOG.info("Retrieving courses for author: " + author);
-        courseRetrievalService courses = new courseRetrievalService();
-        LOG.info(courses.findCourses(authorId));
+        courseRetrievalService courseRetrievalService = new courseRetrievalService();
+        List<PluralsightCourses> courses = courseRetrievalService
+                .findCourses(authorId);
+        List<PluralsightCourses> activeCourses = courses
+                .stream()
+                        .filter(core -> !core.isRetired())
+                                .toList();
+        LOG.info("{} Courses found by Author {}, /n Courses are: {}", activeCourses.size(), author, activeCourses);
     }
 
     public static String breakName(String authorId) {
